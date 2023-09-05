@@ -1,0 +1,92 @@
+slidy: '1'
+
+scripts:
+  cleanup:
+    description: "cleanup project"
+    steps:
+      - name: "Clean"
+        run: flutter clean
+        
+      - name: "GetPackages"
+        run: flutter pub get
+  
+  runweb:
+    description: "run chrome"
+    steps:
+      - name: "Chrome"
+        run: flutter run -d chrome --web-port=50000
+
+  mobx_build:
+    description: "mobx build"
+    steps:
+      - name: "Clean"
+        run: flutter clean
+        
+      - name: "GetPackages"
+        run: flutter pub get
+
+      - name: "Build"
+        run: flutter pub run build_runner build
+
+  mobx_watch:
+    description: "mobx watch"
+    steps:
+      - name: "Clean"
+        run: flutter clean
+        
+      - name: "GetPackages"
+        run: flutter pub get
+        
+      - name: "Watch"
+        run: flutter pub run build_runner watch
+
+  mobx_buildc:
+    description: "mobx build delete"
+    steps:
+      - name: "Clean"
+        run: flutter clean
+        
+      - name: "GetPackages"
+        run: flutter pub get
+
+      - name: "BuildDelete"
+        run: flutter pub run build_runner build --delete-conflicting-outputs
+
+  mobx_watchc:
+    description: "mobx watch delete"
+    steps:
+      - name: "Clean"
+        run: flutter clean
+        
+      - name: "GetPackages"
+        run: flutter pub get
+
+      - name: "WatchDelete"
+        run: flutter pub run build_runner watch --delete-conflicting-outputs
+
+  build_ipa:
+    description: "build ipa"
+    steps:
+      - name: "Clean"
+        run: flutter clean
+        
+      - name: "GetPackages"
+        run: flutter pub get
+
+      - name: "IPA"
+        run: flutter build ipa --obfuscate --split-debug-info=./obsfucated/debug
+
+  build_apk:
+    description: "build app bundle"
+    steps:
+      - name: "Clean"
+        run: flutter clean
+        
+      - name: "GetPackages"
+        run: flutter pub get
+
+      - name: "APK"
+        run: flutter build appbundle --obfuscate --split-debug-info=./obsfucated/debug
+
+#slidy generate module modules/start
+#slidy g mbx modules/start/my_store
